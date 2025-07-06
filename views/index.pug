@@ -1,0 +1,25 @@
+extends layout 
+block content 
+    h1 Admin page 
+    h2 Projects 
+    form(action="/projects" method="POST")
+        input(type="text" name="title" placeholder="Title" required)
+        input(type="text" name="description" placeholder="Description")
+        button(type="submit") Add Project 
+    ul 
+        each project in projects 
+            li 
+                #{project.title} - #{project.description}
+                form(action=`/projects/delete/${project._id}` method="POST")
+                    button(type="submit") Delete
+    h2 Skills 
+    form(action="/skills" method="POST")
+        input(type="text" name="name" placeholder="Skills" required)
+        input(type="text" name="level" placeholder="Level")
+        button(type="submit") Add Skill 
+    ul 
+        each skill in skills 
+            li 
+                #{skill.name} - #{skill.level}
+                form(action=`/skills/delete/${skill._id}` method="POST")
+                    button(type="submit") Delete
